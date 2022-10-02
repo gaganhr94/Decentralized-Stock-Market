@@ -1,0 +1,57 @@
+.main{
+    display:grid;
+    grid-template-columns: 2fr 3fr;
+    grid-gap: 0px;
+    
+}
+.left{
+    background-image: url("giphy.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 6.43in;
+    color:beige;
+}
+.Info{
+    margin-top: 4in;
+    margin-left: 1.5in;
+    font-size: 20px;
+}
+.right{
+    background-image: url('https://www.investopedia.com/thmb/v95IPWfnAFGIV77bxwlVa0cRjGI=/680x440/filters:no_upscale():max_bytes(150000):strip_icc()/stocks_electric_chart-5bfc3c9f46e0fb002605d35d.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color:beige;
+}
+form{
+    padding:10px;
+    margin-left: 2.3in;
+    margin-top: 1in;
+    margin-right: 2.5in;
+    text-align: center;
+    border-radius: 10px;
+    background-color: rgba(245, 245, 220, 0.709);
+
+}
+p{
+    margin-left: 1.5in;
+    margin-top: 0.5in;
+    font-size: 2em;
+}
+body{
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+.form_select{
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+}
+.exec_ord{
+    text-align: center;
+}
+td{
+    font-size: 1.2em;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

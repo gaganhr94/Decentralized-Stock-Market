@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="TradeCSS.css">
+        <title>
+            Trade
+        </title>
+    </head>
+    <body>
+        <div class="main">
+            <div class="left">
+                <p>De-Stockify</p>
+                <div class="Info">A Decentralised<br> Stock Exchange Platform</div>
+            </div>
+            <div class="right">
+                <p>Start Trading!</p>
+                <form>
+                    <table class="form_table">
+                        <tr>
+                            <td>
+                                <label>Trading Symbol:</label>
+                            </td>
+                            <td colspan="2">
+                                <input type="text" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Order:</label>
+                            </td>
+                            <td>
+                                <input type="radio" name="Buy" value="Buy">Buy
+                            </td>
+                            <td>
+                                <input type="radio" name="Sell" value="Sell">Sell
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Order Type:</label>
+                            </td>
+                            <td colspan="2">
+                                <select class="form_select" name="order_type">
+                                    <!-- <option value="">Select</option> -->
+                                    <option value="IOC">IOC</option>
+                                    <option value="OPEN">OPEN</option>
+                                    <option value="FOK">FOK</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Holdings Available:</label>
+                            </td>
+                            <td colspan="2">
+                                <input type="text" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Order Price:</label>
+                            </td>
+                            <td colspan="2">
+                                <input type="text" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="exec_ord">
+                                <input type="submit" value="Execute Order" style="width: 100%; height: 30px;">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
