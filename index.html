@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CONNECTION TO METAMASK</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
+    <style>
+        body {
+            background-color: palevioletred;
+            font-size: 33px;
+            text-align: center;
+        }
+        button {
+            background-color: aquamarine;
+            font-size: 33px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+        button:hover {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+	<button onclick="connectMetamask()">CONNECT TO METAMASK</button> <br>
+	<p id="accountArea"></p>
+	<button onclick="connectContract()">CONNECT TO CONTRACT</button> <br>
+	<p id="contractArea"></p>
+	<button onclick="readContract()">GET DATA FROM CONTRACT</button> <br>
+	<p id="dataArea"></p>
+    <!-- <button onclick="changeWord()">CHANGE DATA ON THE SMART CONTRACT</button> <br>
+    <input type="text" id="inputArea">
+ -->
+
+    <script>
+        //1- connect metamask
+        let account;
+        const connectMetamask = async () => {
+            if(window.ethereum !== "undefined") {
+                const accounts = await ethereum.request({method: "eth_requestAccounts"});
+                account = accounts[0];
+                document.getElementById("accountArea").innerHTML = account;
+            }
+        }
+
+        //2- connect to smart contract
+        const connectContract = async () => {
+            const ABI = 
+			[
+	{
+		"inputs": [
+		{
+				"internalType": "string",
+				"name": "symbsent",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "quantsent",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "prcesent",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "sntprc",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "sent_qty",
+				"type": "uint256"
+			}
+		],
+		"name": "buy",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "orderid",
+				"type": "uint256"
+			}
+		],
+		"name": "cancel_buyorder",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "orderid",
+				"type": "uint256"
+			}
+		],
+		"name": "cancel_sellorder",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getActiveOrders",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "orderid",
+				"type": "uint256"
+			}
+		],
+		"name": "getDetails",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getMarketDepth",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getShares",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getSymbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getmktprice",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "sell_price",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "sellqty",
+				"type": "uint256"
+			}
+		],
+		"name": "sell",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	}
+]
+
+
+
+            const Address = "0x7b9F4e141d2A214FA0c6b1F68c1f7AFd3cCBB791";
+            window.web3 = await new Web3(window.ethereum);
+            window.contract = await new window.web3.eth.Contract( ABI, Address); 
+            document.getElementById("contractArea").innerHTML = "connected to smart contract";
+
+
+        }
+
+        //3-read data from smart contract
+		/*
+        const readContract= async () => {
+            const data = await window.contract.methods.getmktprice().call();
+            document.getElementById("dataArea").innerHTML = data;
+
+        }
+		*/
+
+		var Web3 = require('web3');
+		var web3 = new Web3('https://rinkeby.infura.io/v3/e720b1c290224ab9ac3c8cbc8b5c80bb');
+		var address = '0xb4fF6d9aFAF0cc1ebE38a7F60cf5899Ba88dE7A2';
+		
+		var contract1 = new web3.eth.Contract(ABI, address);
+		var data = contract1.methods.getSymbol().call(err, result => {console.log(result)});
+		document.getElementById("dataArea").innerHTML = data;
+
+        
+    </script>
+</body>
+<script src="server.js"></script>
+</html>
