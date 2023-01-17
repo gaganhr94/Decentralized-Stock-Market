@@ -1,4 +1,4 @@
-##Decentralized Stock Market
+## Decentralized Stock Market
 
 In a decentralized stock market, the process of buying and selling stocks is done through smart contracts, which are self-executing contracts with the terms of the agreement written into the code. This eliminates the need for intermediaries such as stockbrokers and reduces the cost of transactions.
 
